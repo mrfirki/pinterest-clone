@@ -2,13 +2,60 @@
 <html>
   <head>
     <title>PinterestClone</title>
+      <!-- CSS -->
+      <!-- a) bootstrap.min.css -->
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+      <!--  **I park application.css after bootstrap cdn link so that application.css setting can override bootstrap stylesss-->
+  
+      <!-- JS -->
+      <!-- a) Jquery.min.js -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- b) bootstrap.min.js -->
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <!-- d) fontawesome.js -->
+      <script src="https://use.fontawesome.com/b470fc1405.js"></script>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <meta name="viewport" content="width=device-width,initial-scale=1.0">
   </head>
 
+<center>
   <body>
-    <%= yield %>
+
+
+<div>
+  <div class="row">
+    <nav class="navbar navbar" role="navigation">
+        <div class="container">
+           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <%= link_to "Home", root_path %>
+                    </li>
+                    <% if logged_in? %>
+                    <li>
+                        <%= link_to "Profile", user_path(current_user) %>
+                    </li>                
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                  <li >
+                      <%= link_to "Logout", logout_path, method: :delete %>
+                  </li>
+                </ul>
+                    <% end %>  
+            </div>            
+        </div>        
+    </nav>
+  </div>
+
+ <%= yield %>
+   
+  
   </body>
+</center>  
 </html>
