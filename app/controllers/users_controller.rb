@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     		session[:user_id] = @user.id
       	redirect_to users_path, notice: 'Thank you for signing up!'
     	else
-      	render :new
+        @message = @user.errors.full_messages
+        render :json => @message.to_json
     	end
   	end
 
@@ -33,9 +34,10 @@ class UsersController < ApplicationController
       end 
     end
 
-    def delete
-      @user = User.find_by(params[:id])
+    def destroy
+      @user = User.find(params[:id])
       @user.destroy
+      session[:user_id] = nil
       redirect_to '/'
     end  
 

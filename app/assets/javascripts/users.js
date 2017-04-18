@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function(){
 			data: data,
 			success: function(response){
 				pTag = document.createElement("p")
-				pTag.innerText = $(response)[1]
+				pTag.innerText = $(response)[0]
 				pTag.style.color = "red";
 				submitButton = $('input[type="submit"]')[0]
 				errorMessage = $(submitButton).parent()
