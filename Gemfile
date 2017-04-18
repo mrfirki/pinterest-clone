@@ -15,6 +15,12 @@ gem 'figaro'
 #add omniouth with facebook
 gem 'omniauth'
 gem 'omniauth-facebook'
+#add youtube api
+gem 'yt', '~> 0.28.0'
+#add google api
+gem 'google-api-client', '~> 0.8.2'
+#add trollop
+gem 'trollop'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

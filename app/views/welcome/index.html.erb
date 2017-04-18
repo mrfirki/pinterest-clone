@@ -1,8 +1,30 @@
 <center>
 	<p>hello</p>
 	<p>welcome to pinterest</p>
-
 		<%= link_to "Sign Up", new_user_path %>
         <%= link_to "Log In", login_path %>
-        <%= link_to "Connect With Facebook", "/auth/facebook" %>  
+        <%= link_to "Connect With Facebook", "/auth/facebook" %> 
+        <div class="spacing"></div>
+        <h3>youtube search</h3>
+
+	    <%= form_tag root_path, :method => 'get' do %>
+	      <%= text_field_tag :search_term %><br/>
+	      <%= submit_tag "Search" %>
+	    <% end %>
+
+	    <div class="row center">
+		<% if @search_results %>
+			<% @search_results.each do |result| %>
+				<% case result.id.kind %>
+		        <% when 'youtube#video' %>
+					<p><%= result.snippet.title %></p>
+					<iframe width="640" height="350" src="https://youtube.com/embed/<%= result.id.videoId %>" allowfullscreen="allowfullscreen"></iframe>
+		        <% when 'youtube#channel' %>
+					<p><%= result.snippet.title %> <%= result.id.channelId %></p>
+				<% when 'youtube#playlist' %>
+					<p><%= result.snippet.title %> <%= result.id.playlistId %></p>
+		      	<% end %>
+			<% end %>
+		<% end %>
+		</div> 
 </center>
