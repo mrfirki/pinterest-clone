@@ -13,9 +13,7 @@ class PinsController < ApplicationController
 
 	def create
 		@pin = Pin.new(pin_params)
-		byebug
 		if @pin.save
-			byebug
 			redirect_to pins_path, notice: "Pin was successfully created"
 		else
 			render 'new'
