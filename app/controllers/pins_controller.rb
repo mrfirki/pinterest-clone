@@ -1,18 +1,21 @@
 class PinsController < ApplicationController
+	before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
 	def index
 		@pins = Pin.all.order("created_at DESC")
 	end
 
 	def show
+		@pin = Pin.find(params[:id])
 	end
 
 	def new
-		@pin = Pin.new
+		@pin = current_user.pins.new
 	end
 
 	def create
-		@pin = Pin.new(pin_params)
+		@pin = current_user.pins.new(pin_params)
+		byebug
 		if @pin.save
 			redirect_to pins_path, notice: "Pin was successfully created"
 		else

@@ -1,0 +1,10 @@
+<p>hello pin index</p>
+<div>
+	<% @pins.each do |pin| %>
+		<p>title: <%= pin.title %></p>
+		<p>description: <%= pin.description %></p>
+	<% end %>
+</div>
+
+
+<%= link_to 'pin new', new_pin_path %>
