@@ -1,1 +1,10 @@
 <p>hello pin show</p>
+
+
+	<% @pins.each do |pin| %>
+		<p>title: <%= pin.title %></p>
+		<p>description: <%= pin.description %></p>
+	<% end %>
+
+	<p>title :<%= @pin.title %><br/></p>
+	<p>description: <%= @pin.description %><br/></p>

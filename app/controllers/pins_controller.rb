@@ -1,12 +1,13 @@
 class PinsController < ApplicationController
-	before_action :find_pin, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+	before_action :find_pin, only: [:show, :edit, :update, :destroy,]
 
 	def index
 		@pins = Pin.all.order("created_at DESC")
 	end
 
 	def show
-		@pin = Pin.find(params[:id])
+		# @pin = Pin.find(params[:id])
+		@pins = Pin.where(user_id: params[:user_id])
 	end
 
 	def new
@@ -15,7 +16,6 @@ class PinsController < ApplicationController
 
 	def create
 		@pin = current_user.pins.new(pin_params)
-		byebug
 		if @pin.save
 			redirect_to pins_path, notice: "Pin was successfully created"
 		else
@@ -39,10 +39,6 @@ class PinsController < ApplicationController
 		redirect_to root_path
 	end
 
-	def upvote
-		@pin.upvote_by current_user
-		redirect_to :back
-	end
 
 	private
 
@@ -51,6 +47,7 @@ class PinsController < ApplicationController
 	end
 
 	def find_pin
-		@pin = Pin.find(params[:id])
+		@pin = current_user.pins.find(params[:id])
 	end
+
 end
