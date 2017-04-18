@@ -1,0 +1,15 @@
+<center>
+<p>new pins</p>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for @pin  do |form| %>
+      <%= render partial: '/pins/form', object: form %>
+
+      <div class="submit-field">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>  
+
+</center>
