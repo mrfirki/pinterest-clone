@@ -3,7 +3,8 @@
 	<p>all pins</p>
 	<div>
 	<% @pins.each do |pin| %>
-		<h4>title: <%= pin.title %></h4>
+		 <h4>owner pin:  <%= pin.user.username %></h4>
+		<h4>title:       <%= pin.title %></h4>
 		<h4>description: <%= pin.description %></h4>
 		
 	<% end %>
