@@ -3,7 +3,8 @@ require 'bcrypt'
 class User < ApplicationRecord
 	has_secure_password
 
-  has_many :authentications, :dependent => :destroy 
+  has_many :authentications, :dependent => :destroy
+  has_many :pins, :dependent => :destroy
 
 	validates :username, presence: true, length: { maximum: 50 }
 	validates :email, presence: true,  uniqueness: true

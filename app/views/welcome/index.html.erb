@@ -1,4 +1,16 @@
 <center>
+<% if logged_in? %>
+	<p>all pins</p>
+	<div>
+	<% @pins.each do |pin| %>
+		 <h4>owner pin:  <%= pin.user.username %></h4>
+		<h4>title:       <%= pin.title %></h4>
+		<h4>description: <%= pin.description %></h4>
+		
+	<% end %>
+	</div>
+
+<% else %>
 	<p>hello</p>
 	<p>welcome to pinterest</p>
 		<%= link_to "Sign Up", new_user_path %>
@@ -13,18 +25,19 @@
 	    <% end %>
 
 	    <div class="row center">
-		<% if @search_results %>
-			<% @search_results.each do |result| %>
-				<% case result.id.kind %>
-		        <% when 'youtube#video' %>
-					<p><%= result.snippet.title %></p>
-					<iframe width="640" height="350" src="https://youtube.com/embed/<%= result.id.videoId %>" allowfullscreen="allowfullscreen"></iframe>
-		        <% when 'youtube#channel' %>
-					<p><%= result.snippet.title %> <%= result.id.channelId %></p>
-				<% when 'youtube#playlist' %>
-					<p><%= result.snippet.title %> <%= result.id.playlistId %></p>
-		      	<% end %>
+			<% if @search_results %>
+				<% @search_results.each do |result| %>
+					<% case result.id.kind %>
+			        <% when 'youtube#video' %>
+						<p><%= result.snippet.title %></p>
+						<iframe width="640" height="350" src="https://youtube.com/embed/<%= result.id.videoId %>" allowfullscreen="allowfullscreen"></iframe>
+			        <% when 'youtube#channel' %>
+						<p><%= result.snippet.title %> <%= result.id.channelId %></p>
+					<% when 'youtube#playlist' %>
+						<p><%= result.snippet.title %> <%= result.id.playlistId %></p>
+			      	<% end %>
+				<% end %>
 			<% end %>
-		<% end %>
-		</div> 
+		</div>
+	<% end %>	 
 </center>

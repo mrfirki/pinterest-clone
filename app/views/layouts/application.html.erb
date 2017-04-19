@@ -39,7 +39,13 @@
                     <% if logged_in? %>
                     <li>
                         <%= link_to "Profile", user_path(current_user) %>
-                    </li>                
+                    </li>
+                    <li>
+                        <%= link_to "my pin index", user_pins_path(current_user) %>
+                    </li>
+                    <li>
+                        <%= link_to "create pin", new_user_pin_path(current_user) %>
+                    </li>                   
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -51,6 +57,11 @@
             </div>            
         </div>        
     </nav>
+  </div>
+  <div id="flash">
+    <% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
   </div>
 
  <%= yield %>
