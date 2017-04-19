@@ -2,39 +2,44 @@ class PinsController < ApplicationController
 	before_action :find_pin, only: [:show, :edit, :update, :destroy,]
 
 	def index
-		@pins = Pin.all.order("created_at DESC")
+		@pins = Pin.where(user_id: params[:user_id])	
 	end
 
 	def show
-		# @pin = Pin.find(params[:id])
-		@pins = Pin.where(user_id: params[:user_id])
+		@pins = Pin.find(params[:id])
 	end
 
 	def new
-		@pin = current_user.pins.new
+		@pin = Pin.new
 	end
 
 	def create
 		@pin = current_user.pins.new(pin_params)
 		if @pin.save
-			redirect_to pins_path, notice: "Pin was successfully created"
+			flash[:success] = "Success create pin!"
+			redirect_to root_path
 		else
 			render 'new'
 		end
 	end
 
 	def edit
+		@pins = Pin.find(params[:id])
 	end
 
 	def update
+		@pin = Pin.find(params[:id])
 		if @pin.update(pin_params)
-			redirect_to @pin, notice: "Pin was successfully updated"
+			flash[:success] = "success updated pin!"
+			redirect_to root_path
 		else
+			flash[:danger] = "sorry try again"
 			render 'edit'
-		end
+		end	
 	end
 
 	def destroy
+		@pin = Pin.find(params[:id])
 		@pin.destroy
 		redirect_to root_path
 	end
@@ -46,8 +51,15 @@ class PinsController < ApplicationController
 		params.require(:pin).permit(:title, :description)
 	end
 
-	def find_pin
-		@pin = current_user.pins.find(params[:id])
+	def find_user
+		@user = User.find(params[:user_id])
 	end
 
+	def find_pin
+		@pin = current_user.pins.find(params[:id])
+		# current_user.pins.find_by(user_id: params[:id])
+	end
+
+	
 end
+

@@ -1,12 +1,14 @@
 <p>hello pin index</p>
 <div>
 	<% @pins.each do |pin| %>
-		<p>title: <%= pin.title %></p>
-		<p>description: <%= pin.description %></p>
+		<h4>title: <%= pin.title %></h4>
+		<h4>description: <%= pin.description %></h4>
+		<div>
+			<%= link_to 'edit', edit_user_pin_path(current_user,pin) %>
+		</div>
+		<div>
+			<%= link_to 'delete', user_pin_path(current_user, pin), method: :delete, data: {confirm: "are you sure?"} %>
+		</div>
 	<% end %>
 </div>
 
-
-<%= link_to 'pin new', new_pin_path %>
-
-<%= link_to 'pin show', pin_path(current_user) %>

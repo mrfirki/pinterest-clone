@@ -1,6 +1,6 @@
 <p>hello pin new</p>
 
-<%= form_for @pin do |f| %>
+<%= form_for ([current_user, @pin]) do |f| %>
 	<div class="col-md-8 col-md-offset-2">
 		<%= f.label :title %>
 		<%= f.text_field :title  %>

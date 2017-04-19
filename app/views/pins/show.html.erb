@@ -1,10 +1,14 @@
 <p>hello pin show</p>
 
-
 	<% @pins.each do |pin| %>
-		<p>title: <%= pin.title %></p>
-		<p>description: <%= pin.description %></p>
+		<h4>title: <%= pin.title %></h4>
+		<h4>description: <%= pin.description %></h4>
+		<%= link_to 'delete', pin_path, method: :delete, data: {confirm: "are you sure ??"} %>
+		<!-- /pins/7 -->
 	<% end %>
 
-	<p>title :<%= @pin.title %><br/></p>
-	<p>description: <%= @pin.description %><br/></p>
+	
+
+
+
+

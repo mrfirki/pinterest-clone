@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
 	get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
-  	resources 'users'
-  	resources 'pins'
+  	resources 'users' do
+  		resources 'pins'
+  	end
   	resources :sessions, only: :create
 end

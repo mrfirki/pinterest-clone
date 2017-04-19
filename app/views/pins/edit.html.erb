@@ -1,1 +1,15 @@
 <p>hello pin edit</p>
+
+<%= form_for ([current_user, @pin]) do |f| %>
+	<div class="field">
+	    <%= f.label :title %><br />
+	    <%= f.text_field :title %>
+  	</div>
+  	<div class="field">
+	    <%= f.label :description %><br />
+	    <%= f.text_field :description %>
+  	</div>
+  	<div class="actions">
+  		<%= f.submit "edit" %>
+  	</div>
+<% end %>

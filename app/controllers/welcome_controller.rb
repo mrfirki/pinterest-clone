@@ -4,6 +4,7 @@ require 'trollop'
 class WelcomeController < ApplicationController
 
 	def index
+		@pins = Pin.all
 		if params[:search_term]
 			@search_results = search_video(params[:search_term])
 		end
