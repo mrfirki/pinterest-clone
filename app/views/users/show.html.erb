@@ -1,8 +1,17 @@
-<p>hello user show page</p>
 
 
-	
-  <h3>username: <%= @user.username %></h3>
-  <h3>email:    <%= @user.email %></h3>
-  <%= link_to 'edit', edit_user_path(current_user) %>\
-  <%= link_to 'delete', user_path(current_user), method: :delete, data: {confirm: "are you sure?"}%>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">	
+				<h3>username: <%= @user.username %></h3>
+			</div>
+			<div class="panel-heading">	
+				<h3>email:    <%= @user.email %></h3>
+				<%= link_to 'edit', edit_user_path(current_user) %>\
+				<%= link_to 'delete', user_path(current_user), method: :delete, data: {confirm: "are you sure?"}%>
+			</div>	
+		</div>
+	</div>
+</div>

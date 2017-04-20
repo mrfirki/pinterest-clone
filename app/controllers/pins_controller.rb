@@ -5,9 +5,9 @@ class PinsController < ApplicationController
 		@pins = Pin.where(user_id: params[:user_id])	
 	end
 
-	def show
-		@pins = Pin.find(params[:id])
-	end
+	# def show
+	# 	@pins = Pin.find(params[:id])
+	# end
 
 	def new
 		@pin = Pin.new
@@ -19,6 +19,7 @@ class PinsController < ApplicationController
 			flash[:success] = "Success create pin!"
 			redirect_to root_path
 		else
+			flash[:danger] = "Please fill the form!"
 			render 'new'
 		end
 	end
