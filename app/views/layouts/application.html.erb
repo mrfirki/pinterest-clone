@@ -23,11 +23,8 @@
      <meta name="viewport" content="width=device-width,initial-scale=1.0">
   </head>
 
-<center>
   <body>
 
-
-<div>
   <div class="row">
     <nav class="navbar navbar" role="navigation">
         <div class="container">
@@ -58,15 +55,19 @@
         </div>        
     </nav>
   </div>
-  <div id="flash">
-    <% flash.each do |key, value| %>
-  <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
+  <div class="row">
+    <div class="col-md-5">
+      <div id="flash">
+        <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+      </div>
+    </div>
   </div>
 
  <%= yield %>
-   
+  
   
   </body>
-</center>  
+
 </html>

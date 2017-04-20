@@ -14,13 +14,13 @@ RSpec.describe UsersController, type: :controller do
     	end
 	end
 
-	describe "POST #create" do
-	    # happy_path
-	    context "valid_params" do
-	      it "creates new user if params are correct" do
-	        expect {post :create, :user => valid_params}.to change(User, :count).by(1)
-	      end
-	    end
-	end
+	# describe "POST #create" do
+	#     # happy_path
+	#     context "valid_params" do
+	#       it "creates new user if params are correct" do
+	#         expect {post :create, :user => valid_params}.to change(User, :count).by(1)
+	#       end
+	#     end
+	# end
 
 end

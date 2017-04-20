@@ -1,14 +1,22 @@
-<p>hello pin index</p>
+
 <div>
 	<% @pins.each do |pin| %>
-		<h4>title: <%= pin.title %></h4>
-		<h4>description: <%= pin.description %></h4>
-		<div>
-			<%= link_to 'edit', edit_user_pin_path(current_user,pin) %>
+	<div class="row">		
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4>title: <%= pin.title %></h4>
+				</div>
+				<div class="panel-body">	
+					<h4>description: <%= pin.description %></h4>
+					<div>
+						<%= link_to 'edit', edit_user_pin_path(current_user,pin) %>
+						<%= link_to 'delete', user_pin_path(current_user, pin), method: :delete, data: {confirm: "are you sure?"} %>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div>
-			<%= link_to 'delete', user_pin_path(current_user, pin), method: :delete, data: {confirm: "are you sure?"} %>
-		</div>
+	</div>		
 	<% end %>
 </div>
 
