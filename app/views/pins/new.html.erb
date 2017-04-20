@@ -1,16 +1,24 @@
-<p>hello pin new</p>
 
-<%= form_for ([current_user, @pin]) do |f| %>
-	<div class="col-md-8 col-md-offset-2">
-		<%= f.label :title %>
-		<%= f.text_field :title  %>
-	</div>
-	<div class="col-md-8 col-md-offset-2">
-		<%= f.label :description %>
-		<%= f.text_field :description %>
-	</div>
-	<div class="col-md-8 col-md-offset-2">
-		<%= f.submit 'submit' %>
-	</div>
 
+<%= form_for [current_user, @pin] do |f| %>
+<div class="row">
+  	<div class="col-md-8 col-md-offset-2">
+    	<div class="panel panel-default">
+	  		<div class="panel-heading">
+				<div class="field">
+					<%= f.label :title %>
+					<%= f.text_field :title %>
+				</div>
+
+				<div class="field">	
+					<%= f.label :description %>
+					<%= f.text_field :description %>
+					<div style="padding-top: 10px;">
+					<%= f.submit 'submit' %>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
 <% end %>	

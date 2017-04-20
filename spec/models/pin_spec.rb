@@ -18,12 +18,38 @@ RSpec.describe Pin, type: :model do
 	  	end
 	  	
 	  	#happy_path
-	   	# describe "can be created when all attributes are present" do
-	   	# 	When(:pin) { Pin.create(
-	   	# 		title: "hello",
-	   	# 		description: "hello world"
-	   	# 		)}
-	   	# 	Then { expect(pin).to be_valid }
-	   	# end
+	   	describe "can be created when all attributes are present" do
+	   		When(:pin) { Pin.create(
+	   			title: "hello",
+	   			description: "hello world",
+	   			user_id: create(:user).id
+	   			)}
+	   		Then { expect(pin).to be_valid }
+	   	end
+
+	   	#unhappy path
+	   	describe "cannot be created without a name" do
+	   		When(:pin) { Pin.create(
+	   			description: "hello world",
+	   			user_id: create(:user).id
+	   			)}
+	   		Then { pin.valid? == false }
+	   	end
+	   	
+	   	describe "cannot be created without a description" do
+	   		When(:pin) { Pin.create(
+	   			title: "hello",
+	   			user_id: create(:user).id
+	   			)}
+	   		Then { pin.valid? == false }
+	   	end
+
+	   	describe "cannot be created without a user_id" do
+			When(:pin) { Pin.create(
+				title: "hello",
+				description: "hello world"
+				)}
+			Then { pin.valid? == false }
+		end					
 	end   		
 end

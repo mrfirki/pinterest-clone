@@ -4,9 +4,8 @@ require 'trollop'
 class WelcomeController < ApplicationController
 
 	def index
-		# @pins = Pin.all
 		if params[:search].present?
-			@pins = Pin.where(["title LIKE ?", "#{params[:search]}"])
+			@pins = Pin.where(["title LIKE ?", "%#{params[:search]}%"])
 		else
 			@pins = Pin.all
 		end	
@@ -14,6 +13,14 @@ class WelcomeController < ApplicationController
 		if params[:search_term]
 			@search_results = search_video(params[:search_term])
 		end
+
+		@meow = "Fikri!"
+
+		respond_to do |format|
+			format.js
+			format.html
+		end
+
 	end
 
 	private
