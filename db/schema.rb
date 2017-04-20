@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170418081449) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_pins_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +41,5 @@ ActiveRecord::Schema.define(version: 20170418081449) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "pins", "users"
 end

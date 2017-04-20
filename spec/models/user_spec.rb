@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context "validations" do
 
+  		# testing active record associations using shoulda-matches
+  		context 'associations with dependency' do
+	     	it { is_expected.to have_many(:pins).dependent(:destroy)}
+	  	end
+
 	  	it "should have username and email and password_digest" do 
 	  		should have_db_column(:username).of_type(:string)
 	      	should have_db_column(:email).of_type(:string)
@@ -19,7 +24,7 @@ RSpec.describe User, type: :model do
       		it { is_expected.to validate_presence_of(:password) }
     	end
 
-    	 # happy_path
+    	# happy_path
     	describe "can be created when all attributes are present" do
       		When(:user) { User.create(
         		username: "Raz",
@@ -29,7 +34,7 @@ RSpec.describe User, type: :model do
       		Then { expect(user).to be_valid }
     	end
 
-    	 # unhappy_path
+    	# unhappy_path
 	    describe "cannot be created without a name" do
 		    When(:user) { User.create(
 		    	email: "sheng@nextacademy.com",
@@ -56,20 +61,16 @@ RSpec.describe User, type: :model do
 	      	let(:user1) { User.create(username: "Tom", email: "tom@nextacademy.com", password: "123456")}
 	      	let(:user2) { User.create(username: "nathalie",email: "nathalie.com", password: "123456") }
 
-		      	# happy_path
-		      	it "sign up with valid email" do
-		        	expect(user1).to be_valid
-		      	end
+	      	# happy_path
+	      	it "sign up with valid email" do
+	        	expect(user1).to be_valid
+	      	end
 
-		      	# unhappy_path
-		      	it "sign up with invalid email" do
-		        	expect(user2).to be_invalid
-		      	end
-	    	end
-		end
-
-	  	context 'associations with dependency' do
-	     	it { is_expected.to have_many(:pins).dependent(:destroy)}
-	  	end
-	end  	
+	      	# unhappy_path
+	      	it "sign up with invalid email" do
+	        	expect(user2).to be_invalid
+	      	end
+	    end
+	end	
+end  	
 
