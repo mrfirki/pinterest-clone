@@ -14,8 +14,6 @@ class WelcomeController < ApplicationController
 			@search_results = search_video(params[:search_term])
 		end
 
-		@meow = "Fikri!"
-
 		respond_to do |format|
 			format.js
 			format.html

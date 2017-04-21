@@ -5,10 +5,6 @@ class PinsController < ApplicationController
 		@pins = Pin.where(user_id: params[:user_id])	
 	end
 
-	# def show
-	# 	@pins = Pin.find(params[:id])
-	# end
-
 	def new
 		@pin = Pin.new
 	end
@@ -58,7 +54,6 @@ class PinsController < ApplicationController
 
 	def find_pin
 		@pin = current_user.pins.find(params[:id])
-		# current_user.pins.find_by(user_id: params[:id])
 	end
 
 	
